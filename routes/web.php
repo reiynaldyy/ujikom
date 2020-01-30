@@ -11,9 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/', function () {
+    return view('layouts.backend');
+});
+
+Route::group(['prefix' => '/admin','middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@index');
+    });
 
 Auth::routes();
 
